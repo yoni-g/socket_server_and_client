@@ -32,7 +32,10 @@ io.on("connection", (socket) => {
 });
 
 const handleJoinChatRequest = (socket) => {
+  // mimc web request 
   setTimeout(() => {
+    console.log("sending message to client >>");
+    console.log("joined-chat", "Welcome to the Chat");
     socket.emit("joined-chat", "Welcome to the Chat")
   }, 2000);
 }

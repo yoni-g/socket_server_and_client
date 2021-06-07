@@ -11,19 +11,27 @@
       let socket = io();
       let el;
 
-      socket.on('welcome', (str) => {
+      socket.on('welcome', (message) => {
         el = document.getElementById('server-hello');
-        el.innerHTML = 'Server message: ' + str;
+        el.innerHTML = 'Server message: ' + message;
       });
 
-      socket.on('time', (time) => {
-        el = document.getElementById('server-hello');
-        el.innerHTML = el.innerHTML + '<br/>Server time: ' + time;
+      socket.on('joined-chat', (message) => {
+        alert("Server send response: \n" + message)
       });
+
+      function handleJoinChat() {
+        socket.emit("join-chat-request", "This is a request from the client")
+      }
 
     </script>
 </head>
 <body>
+    <button 
+      onclick="handleJoinChat()"
+      style="background-color: aquamarine;">
+      Join Chat
+    </button>
     <p id="server-hello"></p>
 </body>
 </html>
